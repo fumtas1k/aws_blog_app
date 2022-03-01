@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Blogs</h1>
+
+<%= search_form_for @q, class: "mb-5" do |f| %>
+  <div class="row">
+    <div class="form-group col">
+      <%= f.label :title_cont, t("activerecord.attributes.blog.title"), class: "sr-only" %>
+      <%= f.search_field :title_cont, class: "form-control", placeholder: t("activerecord.attributes.blog.title") %>
+    </div>
+    <div class="actions col">
+      <%= f.submit class: "btn btn-outline-primary" %>
+    </div>
+  </div>
+<% end %>
+
+<%= link_to t("views.button.new"), new_blog_path, class: "btn btn-primary" %>
+<table class="table">
+  <thead>
+    <tr>
+      <th><%= t("activerecord.attributes.blog.title")%></th>
+      <th><%= t("activerecord.attributes.blog.content")%></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @blogs.each do |blog| %>
+      <tr>
+        <td><%= blog.title %></td>
+        <td><%= blog.content %></td>
+        <td>
+          <%= link_to t("views.button.show"), blog, class: "btn btn-outline-info" %>
+          <%= link_to t("views.button.edit"), edit_blog_path(blog), class: "btn btn-outline-success" %>
+          <%= link_to t("views.button.destroy"), blog, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
