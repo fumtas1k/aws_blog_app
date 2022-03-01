@@ -13,6 +13,8 @@ ja:
       blog:
         title: タイトル
         content: 内容
+        created_at: 登録日時
+        updated_at: 更新日時
   views:
     button:
       new: 新規作成

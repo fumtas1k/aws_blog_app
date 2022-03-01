@@ -5,8 +5,12 @@
 <%= search_form_for @q, class: "mb-5" do |f| %>
   <div class="row">
     <div class="form-group col">
-      <%= f.label :title_cont, t("activerecord.attributes.blog.title"), class: "sr-only" %>
-      <%= f.search_field :title_cont, class: "form-control", placeholder: t("activerecord.attributes.blog.title") %>
+      <%= f.label :title_cont, Blog.human_attribute_name(:title), class: "sr-only" %>
+      <%= f.search_field :title_cont, class: "form-control", placeholder: Blog.human_attribute_name(:title) %>
+    </div>
+    <div class="form-group col">
+      <%= f.label :created_at_gteq, t("activerecord.attributes.blog.created_at"), class: "sr-only" %>
+      <%= f.datetime_field :created_at_gteq, class: "form-control", placeholder: t("activerecord.attributes.blog.created_at") %>
     </div>
     <div class="actions col">
       <%= f.submit class: "btn btn-outline-primary" %>
@@ -18,8 +22,9 @@
 <table class="table">
   <thead>
     <tr>
-      <th><%= t("activerecord.attributes.blog.title")%></th>
+      <th><%= sort_link @q, :title, [:title, "created_at: :desc"] %></th>
       <th><%= t("activerecord.attributes.blog.content")%></th>
+      <th><%= sort_link @q, :created_at, default_order: :desc %></th>
       <th></th>
     </tr>
   </thead>
@@ -29,6 +34,7 @@
       <tr>
         <td><%= blog.title %></td>
         <td><%= blog.content %></td>
+        <td><%= time_ago_in_words(blog.created_at) %></td>
         <td>
           <%= link_to t("views.button.show"), blog, class: "btn btn-outline-info" %>
           <%= link_to t("views.button.edit"), edit_blog_path(blog), class: "btn btn-outline-success" %>

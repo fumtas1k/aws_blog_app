@@ -4,7 +4,7 @@ class BlogsController < ApplicationController
   # GET /blogs or /blogs.json
   def index
     @q = Blog.ransack(params[:q])
-    @blogs = @q.result(distinct: true).default
+    @blogs = @q.result(distinct: true)
   end
 
   # GET /blogs/1 or /blogs/1.json
@@ -56,6 +56,14 @@ class BlogsController < ApplicationController
       format.html { redirect_to blogs_url, notice: "Blog was successfully destroyed." }
       format.json { head :no_content }
     end
+  end
+
+  def self.ransackable_attributes(auth_object = nil)
+    %[title created_at]
+  end
+
+  def self.ransacable_associations(auth_object = nil)
+    []
   end
 
   private
