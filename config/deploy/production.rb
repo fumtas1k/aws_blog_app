@@ -50,7 +50,7 @@
 # The server-based syntax can be used to override options:
 # ------------------------------------
 server "35.77.179.196", user: "app", roles: %w{app db web}
-set: ssh_options, keys: '/Users/fumta/.ssh/id_rsa'
+set :ssh_options, keys: '/Users/fumta/.ssh/id_rsa'
   # ssh_options: {
   #   user: "user_name", # overrides user setting above
   #   keys: %w(/home/user_name/.ssh/id_rsa),
