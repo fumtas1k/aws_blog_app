@@ -1,29 +1,29 @@
-<p id="notice"><%= notice %></p>
-
 <h1>Blogs</h1>
 
 <%= search_form_for @q, class: "mb-5" do |f| %>
   <div class="row">
     <div class="form-group col">
-      <%= f.label :title_cont, Blog.human_attribute_name(:title), class: "sr-only" %>
-      <%= f.search_field :title_cont, class: "form-control", placeholder: Blog.human_attribute_name(:title) %>
+      <%= f.label :title_cont, "#{Blog.human_attribute_name(:title)} or #{Blog.human_attribute_name(:content)}", class: "sr-only" %>
+      <%= f.search_field :title_or_content_cont, class: "form-control", placeholder: "#{Blog.human_attribute_name(:title)} or #{Blog.human_attribute_name(:content)}" %>
     </div>
     <div class="form-group col">
-      <%= f.label :created_at_gteq, t("activerecord.attributes.blog.created_at"), class: "sr-only" %>
-      <%= f.datetime_field :created_at_gteq, class: "form-control", placeholder: t("activerecord.attributes.blog.created_at") %>
+      <%= f.label :created_at_gteq, Blog.human_attribute_name(:created_at), class: "sr-only" %>
+      <%= f.datetime_field :created_at_gteq, class: "form-control", placeholder: Blog.human_attribute_name(:created_at) %>
     </div>
     <div class="actions col">
       <%= f.submit class: "btn btn-outline-primary" %>
+      <%= link_to t("views.button.clear"), request.path, class: "btn btn-outline-warning" %>
     </div>
   </div>
 <% end %>
 
 <%= link_to t("views.button.new"), new_blog_path, class: "btn btn-primary" %>
-<table class="table">
+<table class="table blogs-table">
   <thead>
     <tr>
       <th><%= sort_link @q, :title, [:title, "created_at: :desc"] %></th>
-      <th><%= t("activerecord.attributes.blog.content")%></th>
+      <th><%= Blog.human_attribute_name(:content) %></th>
+      <th><%= Blog.human_attribute_name(:image) %></th>
       <th><%= sort_link @q, :created_at, default_order: :desc %></th>
       <th></th>
     </tr>
@@ -34,11 +34,12 @@
       <tr>
         <td><%= blog.title %></td>
         <td><%= blog.content %></td>
+        <td><%= image_tag(blog.image.url, width: "150px", height: "auto") if blog.image&.url %></td>
         <td><%= time_ago_in_words(blog.created_at) %></td>
         <td>
-          <%= link_to t("views.button.show"), blog, class: "btn btn-outline-info" %>
-          <%= link_to t("views.button.edit"), edit_blog_path(blog), class: "btn btn-outline-success" %>
-          <%= link_to t("views.button.destroy"), blog, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger" %>
+          <%= link_to t("views.button.show"), blog, class: "btn btn-outline-info btn-block" %>
+          <%= link_to t("views.button.edit"), edit_blog_path(blog), class: "btn btn-outline-success btn-block" %>
+          <%= link_to t("views.button.destroy"), blog, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger btn-block" %>
         </td>
       </tr>
     <% end %>

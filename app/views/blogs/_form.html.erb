@@ -1,6 +1,6 @@
 <%= form_with(model: blog, local: true) do |form| %>
   <% if blog.errors.any? %>
-    <div id="error_explanation">
+    <div id="error_explanation alert alert-danger">
       <h2><%= pluralize(blog.errors.count, "error") %> prohibited this blog from being saved:</h2>
 
       <ul>
@@ -21,7 +21,18 @@
     <%= form.text_area :content, class: "form-control", required: true, placeholder: t("activerecord.attributes.blog.content") %>
   </div>
 
+  <div class="field form-group">
+    <%= form.label :image, class: "sr-only" %>
+    <%= form.file_field :image, class: "form-control", placeholder: t("activerecord.attributes.blog.image") %>
+    <%= form.hidden_field :image_cache %>
+  </div>
+
+  <div class="field form-group">
+    <%= image_tag(blog.image.url) if blog.image&.url %>
+  </div>
+
   <div class="actions">
     <%= form.submit nil, class: "btn btn-primary" %>
+    <%= link_to t("views.button.back"), :back, class: "btn btn-warning" %>
   </div>
 <% end %>

@@ -1,14 +1,16 @@
-<p id="notice"><%= notice %></p>
-
 <table class="table">
-<tr>
-  <th scope="row"><%= t("activerecord.attributes.blog.title")%></th>
-  <td><%= simple_format(@blog.title) %></td>
-</tr>
-<tr>
-  <th scope="row"><%= t("activerecord.attributes.blog.content")%></th>
-  <td><%= simple_format(@blog.content) %></td>
-</tr>
+  <tr>
+    <th scope="row"><%= t("activerecord.attributes.blog.title")%></th>
+    <td><%= simple_format(@blog.title) %></td>
+  </tr>
+  <tr>
+    <th scope="row"><%= t("activerecord.attributes.blog.content")%></th>
+    <td><%= simple_format(@blog.content) %></td>
+  </tr>
+  <tr>
+    <th scope="row"><%= t("activerecord.attributes.blog.image")%></th>
+    <td><%= image_tag(@blog.image.url) if @blog.image&.url %></td>
+  </tr>
 </table>
 <%= link_to t("views.button.edit"), edit_blog_path(@blog), class: "btn btn-success" %> |
-<%= link_to t("views.button.back"), blogs_path, class: "btn btn-warning" %>
+<%= link_to t("views.button.back"), :back, class: "btn btn-warning" %>

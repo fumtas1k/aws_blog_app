@@ -13,6 +13,9 @@
   <body>
     <header></header>
     <main>
+      <% flash.each do |key, message| %>
+        <%= content_tag :div, message, class: "alert alert-#{key}" %>
+      <% end %>
       <div class="container">
         <%= yield %>
       </div>

@@ -26,7 +26,7 @@ class BlogsController < ApplicationController
 
     respond_to do |format|
       if @blog.save
-        format.html { redirect_to blog_url(@blog), notice: "Blog was successfully created." }
+        format.html { redirect_to blog_url(@blog), success: "Blog was successfully created." }
         format.json { render :show, status: :created, location: @blog }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -39,7 +39,7 @@ class BlogsController < ApplicationController
   def update
     respond_to do |format|
       if @blog.update(blog_params)
-        format.html { redirect_to blog_url(@blog), notice: "Blog was successfully updated." }
+        format.html { redirect_to blog_url(@blog), success: "Blog was successfully updated." }
         format.json { render :show, status: :ok, location: @blog }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -53,7 +53,7 @@ class BlogsController < ApplicationController
     @blog.destroy
 
     respond_to do |format|
-      format.html { redirect_to blogs_url, notice: "Blog was successfully destroyed." }
+      format.html { redirect_to blogs_url, danger: "Blog was successfully destroyed." }
       format.json { head :no_content }
     end
   end
@@ -74,6 +74,6 @@ class BlogsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def blog_params
-      params.require(:blog).permit(:title, :content)
+      params.require(:blog).permit(:title, :content, :image, :image_cache)
     end
 end
