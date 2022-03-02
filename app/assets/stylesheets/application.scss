@@ -31,3 +31,25 @@ min-width: 110px;
 #error_explanation ul li {
   font-size: 12px;
   list-style: square; }
+
+header {
+  width: 100%;
+  height: 50px;
+  position: fixed;
+  top: 0;
+  background-color: #ccc;
+  color: #fff;
+  .header-logo {
+    display: inline-block;
+    padding: 0 20px;
+    color: inherit;
+    font-size: 28px;
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+}
+main {
+  padding-top: 50px;
+}

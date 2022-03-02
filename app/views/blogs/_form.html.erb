@@ -23,7 +23,7 @@
 
   <div class="field form-group">
     <%= form.label :image, class: "sr-only" %>
-    <%= form.file_field :image, class: "form-control", placeholder: t("activerecord.attributes.blog.image") %>
+    <%= form.file_field :image, class: "form-control", accept: ".png, .jpg, .jpeg, .gif" %>
     <%= form.hidden_field :image_cache %>
   </div>
 

@@ -11,7 +11,9 @@
   </head>
 
   <body>
-    <header></header>
+    <header>
+      <%= link_to "Blogs", blogs_path, class: "header-logo"%>
+    </header>
     <main>
       <% flash.each do |key, message| %>
         <%= content_tag :div, message, class: "alert alert-#{key}" %>

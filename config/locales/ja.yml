@@ -17,6 +17,7 @@ ja:
         created_at: 登録日時
         updated_at: 更新日時
   views:
+    index: 一覧
     button:
       new: 新規作成
       show: 詳細

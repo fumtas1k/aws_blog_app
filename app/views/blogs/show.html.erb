@@ -13,4 +13,6 @@
   </tr>
 </table>
 <%= link_to t("views.button.edit"), edit_blog_path(@blog), class: "btn btn-success" %> |
-<%= link_to t("views.button.back"), :back, class: "btn btn-warning" %>
+<%= link_to t("views.button.destroy"), blog_path(@blog), class: "btn btn-danger", method: :delete, data: {confirm: 'Are you sure?'} %> |
+<%= link_to t("views.button.back"), :back, class: "btn btn-warning" %> |
+<%= link_to t("views.index"), blogs_path, class: "btn btn-dark" %>
