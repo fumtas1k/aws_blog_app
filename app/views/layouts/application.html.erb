@@ -11,15 +11,19 @@
   </head>
 
   <body>
-    <header>
+    <header class=header>
       <div class="header-logo">
         <%= link_to "Blogs", blogs_path, class: "header-logo"%>
       </div>
-      <div class="header-list">
-        <ul class="header-items">
-          <li></li>
-        </ul>
-      </div>
+      <ul class="header-list">
+        <% if current_user %>
+          <li><%= link_to current_user.name, user_path(current_user)%></li>
+          <li><%= link_to t("views.button.logout"), session_path(current_user), method: :delete %></li>
+        <% else %>
+          <li><%= link_to t("views.button.signup"), new_user_path %></li>
+          <li><%= link_to t("views.button.login"), new_session_path %></li>
+        <% end %>
+      </ul>
     </header>
     <main>
       <% flash.each do |key, message| %>

@@ -29,6 +29,9 @@ ja:
       show: 詳細
       edit: 編集
       destroy: 削除
+      logout: ログアウト
+      login: ログイン
+      signup: サインアップ
       back: 戻る
       clear: クリア
   date:
