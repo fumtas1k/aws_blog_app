@@ -12,7 +12,14 @@
 
   <body>
     <header>
-      <%= link_to "Blogs", blogs_path, class: "header-logo"%>
+      <div class="header-logo">
+        <%= link_to "Blogs", blogs_path, class: "header-logo"%>
+      </div>
+      <div class="header-list">
+        <ul class="header-items">
+          <li></li>
+        </ul>
+      </div>
     </header>
     <main>
       <% flash.each do |key, message| %>
