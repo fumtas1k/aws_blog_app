@@ -1,0 +1,12 @@
+<% provide(:title, "show") %>
+
+<table class="table">
+  <tr>
+    <th><%= User.human_attribute_name(:name) %></th>
+    <td><%= @user.name %></td>
+  </tr>
+  <tr>
+    <th><%= User.human_attribute_name(:email) %></th>
+    <td><%= @user.email %></td>
+  </tr>
+</table>
